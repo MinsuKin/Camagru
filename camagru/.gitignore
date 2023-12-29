@@ -1,3 +1,5 @@
 # Ignore IDE and editor specific files
 bin/
 obj/
+
+.DS_Store
