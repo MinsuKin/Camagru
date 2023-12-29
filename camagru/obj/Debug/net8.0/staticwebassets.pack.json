@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/minsu/Desktop/camagru/camagru/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/Users/minsu/Desktop/camagru/camagru/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/minsu/Desktop/camagru/camagru/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.camagru.props",
+      "PackagePath": "build\\camagru.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.camagru.props",
+      "PackagePath": "buildMultiTargeting\\camagru.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.camagru.props",
+      "PackagePath": "buildTransitive\\camagru.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.camagru.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
