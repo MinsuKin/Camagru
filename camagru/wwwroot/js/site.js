@@ -1,5 +1,24 @@
-const uri = 'api/todoitems';
+const uri = 'api/TodoItems';
 let todos = [];
+
+function checkLoginStatus() {
+    fetch('api/Books/', {
+        method: 'GET',
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log("로그인 상태입니다.");
+            } else {
+                console.log("로그아웃 상태입니다.");
+                window.location.href = '/login.html';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+document.addEventListener('DOMContentLoaded', checkLoginStatus);
 
 function getItems() {
     fetch(uri)
