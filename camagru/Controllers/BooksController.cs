@@ -71,4 +71,17 @@ public class BooksController : ControllerBase
 
         return NoContent();
     }
+    
+    [HttpGet("CheckLoginStatus")]
+    public IActionResult CheckLoginStatus()
+    {
+        if (User?.Identity?.IsAuthenticated != null)
+        {
+            return Ok(new { message = "User is authenticated." });
+        }
+        else
+        {
+            return Unauthorized(new { message = "User is not authenticated." });
+        }
+    }
 }

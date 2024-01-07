@@ -1,24 +1,40 @@
 const uri = 'api/TodoItems';
 let todos = [];
 
+function logout() {
+    fetch('/Auth/logout', {
+        method: 'POST'
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log("Logout successful");
+                window.location.href = '/login.html';
+            } else {
+                console.error('Logout failed');
+            }
+        })
+        .catch(error => console.error('Error during logout:', error));
+}
+
 function checkLoginStatus() {
-    fetch('api/Books/', {
+    fetch('api/Books/CheckLoginStatus', {
         method: 'GET',
     })
         .then(response => {
             if (response.ok) {
-                console.log("로그인 상태입니다.");
+                console.log("User is authenticated.");
             } else {
-                console.log("로그아웃 상태입니다.");
                 window.location.href = '/login.html';
             }
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Network error:', error);
         });
 }
 
-document.addEventListener('DOMContentLoaded', checkLoginStatus);
+document.addEventListener('DOMContentLoaded', () => {
+    checkLoginStatus();
+});
 
 function getItems() {
     fetch(uri)

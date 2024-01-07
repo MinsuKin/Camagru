@@ -1,3 +1,21 @@
+function checkLoginStatus() {
+    fetch('api/Books/CheckLoginStatus', {
+        method: 'GET',
+    })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/index.html';
+            }
+        })
+        .catch(error => {
+            console.error('Network error:', error);
+        });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    checkLoginStatus();
+});
+
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
