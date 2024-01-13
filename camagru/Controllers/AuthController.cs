@@ -5,7 +5,7 @@ using camagru.Models;
 namespace camagru.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api")]
 public class AuthController : ControllerBase
 {
     private readonly SignInManager<MyUser> _signInManager;

@@ -2,13 +2,13 @@ const uri = 'api/TodoItems';
 let todos = [];
 
 function logout() {
-    fetch('/Auth/logout', {
+    fetch('/api/logout', {
         method: 'POST'
     })
         .then(response => {
             if (response.ok) {
                 console.log("Logout successful");
-                window.location.href = '/login.html';
+                window.location.href = '/login';
             } else {
                 console.error('Logout failed');
             }
@@ -24,7 +24,7 @@ function checkLoginStatus() {
             if (response.ok) {
                 console.log("User is authenticated.");
             } else {
-                window.location.href = '/login.html';
+                window.location.href = '/login';
             }
         })
         .catch(error => {

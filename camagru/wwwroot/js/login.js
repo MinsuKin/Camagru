@@ -23,7 +23,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     var password = document.getElementById('password').value;
     var useCookies = true;
 
-    var url = '/login';
+    var url = '/api/login';
     if (useCookies) {
         url += '?useCookies=true';
     }
