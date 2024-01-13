@@ -6,7 +6,7 @@
 ## Prerequisites
 Make sure you have the following installed on your machine:
 - [.NET SDK](https://dotnet.microsoft.com/en-us/download)
-- Docker Desktop([Mac](https://docs.docker.com/desktop/install/mac-install/), [Windows](https://docs.docker.com/desktop/install/windows-install/), [Linux](https://docs.docker.com/desktop/install/linux-install/)) Or [Docker](https://docs.docker.com/engine/install/) *with ( docker compose](https://docs.docker.com/compose/install/)
+- Docker Desktop([Mac](https://docs.docker.com/desktop/install/mac-install/), [Windows](https://docs.docker.com/desktop/install/windows-install/), [Linux](https://docs.docker.com/desktop/install/linux-install/)) Or [Docker](https://docs.docker.com/engine/install/) *with [docker compose](https://docs.docker.com/compose/install/)
 - [MongoDB Compass](https://www.mongodb.com/try/download/compass)
 
 ## Getting Started
