@@ -1,0 +1,13 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS builder
+WORKDIR /app
+
+# Copy the project files and restore dependencies
+COPY . .
+RUN dotnet restore camagru.csproj
+
+
+# Build the application
+RUN dotnet publish -c Release -o out
+
+# Start the application
+CMD ["dotnet", "./out/camagru.dll"]

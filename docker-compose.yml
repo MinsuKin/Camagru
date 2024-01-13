@@ -2,9 +2,23 @@ version: '3.9'
 
 services:
 
+  server:
+    container_name: camagru-server
+    restart: always
+    build:
+      context: ./camagru
+      dockerfile: dockerfile
+    ports:
+      - "5000:8080"
+    volumes:
+      - ./camagru:/app
+      - /app/bin
+      - /app/out
+
+
   mongo:
     image: mongo
-    container-name: mongo-camagru
+    container_name: mongo-camagru
     restart: always
     ports:
       - "27017:27017"
