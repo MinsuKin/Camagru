@@ -15,6 +15,12 @@ public class AuthController : ControllerBase
         _signInManager = signInManager;
     }
 
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] RegisterModel model)
+    {
+        return Ok(new { message = "Successfully called register without logic" });
+    }
+
     [HttpPost("logout")]
     public async Task<IActionResult> Logout()
     {
