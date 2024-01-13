@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+
+  mongo:
+    image: mongo
+    container-name: mongo-camagru
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
