@@ -18,6 +18,13 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel model)
     {
+        await Task.FromResult(0);
+        return Ok(new { message = "Successfully called register without logic" });
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginModel model)
+    {   await Task.FromResult(0);
         return Ok(new { message = "Successfully called register without logic" });
     }
 
