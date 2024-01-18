@@ -1,5 +1,5 @@
 function checkLoginStatus() {
-    fetch('api/Books/CheckLoginStatus', {
+    fetch('/api/Books/CheckLoginStatus', {
         method: 'GET',
     })
         .then(response => {
