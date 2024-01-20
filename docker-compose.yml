@@ -9,7 +9,7 @@ services:
       context: ./camagru
       dockerfile: dockerfile
     ports:
-      - "5000:8080"
+      - "5084:8080"
     volumes:
       - ./camagru:/app
       - /app/bin

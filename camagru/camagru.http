@@ -1,4 +1,4 @@
-@camagru_HostAddress = http://localhost:5000
+@camagru_HostAddress = http://localhost:5084
 
 GET {{camagru_HostAddress}}/weatherforecast/
 Accept: application/json
