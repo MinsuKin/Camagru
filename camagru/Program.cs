@@ -11,6 +11,9 @@ builder.Services.Configure<BookStoreDatabaseSettings>(
 
 builder.Services.AddSingleton<BooksService>();
 
+// For saving user info in mongoDB
+builder.Services.AddSingleton<UserService>();
+
 builder.Services.AddControllers()
                 .AddJsonOptions(
                     options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
