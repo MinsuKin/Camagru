@@ -8,20 +8,47 @@ services:
     build:
       context: ./camagru
       dockerfile: dockerfile
-    ports:
-      - "5084:8080"
     volumes:
       - ./camagru:/app
       - /app/bin
       - /app/out
+    networks:
+      - frontend-network
+      - backend-network
 
 
   mongo:
     image: mongo
-    container_name: mongo-camagru
+    container_name: camagru-mongo
     restart: always
     ports:
       - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - backend-network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: dockerfile
+    container_name: camagru-nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./camagru/wwwroot:/usr/share/nginx/html
+    depends_on:
+      - server
+    networks:
+      - frontend-network
+
+networks:
+  frontend-network:
+    driver: bridge
+  backend-network:
+    driver: bridge
+  

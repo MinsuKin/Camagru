@@ -44,7 +44,7 @@ var app = builder.Build();
 app.MapIdentityApi<MyUser>();
 
 app.UseDefaultFiles();
-app.UseStaticFiles();
+// app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
 {

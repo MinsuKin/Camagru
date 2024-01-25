@@ -7,7 +7,9 @@ RUN dotnet restore camagru.csproj
 
 
 # Build the application
-RUN dotnet publish -c Release -o out
+# RUN dotnet build -o out
+# RUN dotnet publish -c Release -o out
+
 
 # Start the application
-CMD ["dotnet", "./out/camagru.dll"]
+CMD ["dotnet", "watch"]
