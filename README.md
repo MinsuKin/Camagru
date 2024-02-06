@@ -49,3 +49,6 @@ When you're done working on the project, stop the Docker containers:
 ```bash
 docker-compose down
 ```
+
+# Ressources
+Styling of the website made following a [Tutorial](https://www.youtube.com/watch?v=oYRda7UtuhA)
