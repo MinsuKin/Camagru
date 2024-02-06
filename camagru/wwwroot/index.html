@@ -1,12 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" charset="UTF-8" content="with=device-width, initial-scale=1.0">
     <title>To-do CRUD</title>
     <link rel="stylesheet" href="css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
 </head>
 <body>
-<button class="logout-button" onclick="logout()">Logout</button>
+<section class="header">
+    <nav class="nav-links">
+        <a href="index.html">
+            <img src="favicon.ico">
+        </a>
+        <div>
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">ABOUT</a></li>
+                <li><a href="">PICS</a></li>
+                <li><a href="">LOGOUT</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="text-box">
+        <h1>Funny 42Quebec Project</h1>
+        <p>A project to implement a kind of instagram to post and edit pictures</p>
+        <a href="" class="hero-btn">See what it is about</a>
+        <form>
+            <input type="email" id="registerEmail" placeholder="Email">
+            <input type="password" id="registerPassword" placeholder="Password">
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+</section>
+<!-- <button class="logout-button" onclick="logout()">Logout</button>
 <h1>To-do CRUD</h1>
 <h3>Add</h3>
 <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
@@ -40,6 +69,6 @@
 <script src="js/site.js" asp-append-version="true"></script>
 <script type="text/javascript">
     getItems();
-</script>
+</script> -->
 </body>
 </html>
