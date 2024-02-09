@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Login - Camagru</title>
     <link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 <body>
@@ -14,4 +14,66 @@
 <button onclick="location.href='/register'">Register</button>
 <script src="/js/login.js"></script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" charset="UTF-8">
+    <title>Register - Camagru</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+
+    <!-- <script src="/js/login.js"></script> -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+<section class="header">
+    <nav class="nav-links">
+        <a href="/">
+            <img src="/favicon.ico">
+        </a>
+        <div>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/register">REGISTER</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="text-box">
+        <h1>Log Into Your Account</h1>
+        <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button
+                hx-post="/api/logout"
+                hx-target="#post-data"
+                hx-swap="outerHTML"
+                type="submit"
+                >Login
+            </button>
+        </form>
+        <p id='post-data'>Print message from backend</p>
+    </div>
+</section>
+</body>
 </html>
+
+<script>
+    document.body.addEventListener('htmx:afterRequest', function (event) {
+        var responseText = event.detail.xhr.responseText;
+        var targetId = event.detail.target.id;
+        console.log(targetId);
+        try {
+            var responseObject = JSON.parse(responseText);
+            var message = responseObject.message;
+            console.log('Message Value:', message);
+            document.getElementById(targetId).innerHTML = 'Message: ' + message;
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+        }
+        console.log('Response from server:', responseText);
+    });
+</script>

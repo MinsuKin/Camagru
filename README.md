@@ -16,7 +16,7 @@ git clone https://github.com/MinsuKin/Camagru
 ```
 2. Navigate to the project directory:
 ```bash
-cd Camagru
+cd camagru
 ```
 3. Run MongoDB in a Docker container:
 	- Provide value to .env variables
