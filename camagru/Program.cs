@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using camagru.Models;
 using camagru.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,19 +46,43 @@ var app = builder.Build();
 app.MapIdentityApi<MyUser>();
 
 app.UseDefaultFiles();
-// app.UseStaticFiles();
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
+// app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = context =>
+    {
+        Console.WriteLine($"Serving Files from :{context.File.PhysicalPath}");
+        if (!context.Context.User.Identity.IsAuthenticated &&
+            !Path.HasExtension(context.File.Name)) {
+            // Redirect to index.html if not authenticated, but not for static files
+            context.Context.Response.Redirect("/index.html");
+        }
+    }
+});
+app.UseFileServer(new FileServerOptions
+{
+    FileProvider = new CompositeFileProvider(
+        new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "wwwrootauth"))
+    ),
+    EnableDefaultFiles = true
+});
+
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+// app.UseEndpoints(endpoints =>
+// {
+//     endpoints.MapRazorPages();
+// });
 
 app.Run();
