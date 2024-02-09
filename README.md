@@ -12,11 +12,11 @@ Make sure you have the following installed on your machine:
 ## Getting Started
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/yourproject.git
+git clone https://github.com/MinsuKin/Camagru
 ```
 2. Navigate to the project directory:
 ```bash
-cd camagru
+cd Camagru
 ```
 3. Run MongoDB in a Docker container:
 	- Provide value to .env variables
