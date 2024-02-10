@@ -47,26 +47,12 @@ builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
 
 
-// for Identity
-// builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
-//     .AddIdentityCookies();
-// builder.Services.AddAuthorizationBuilder();
-//
-// builder.Services.AddDbContext<AppDbContext>(
-//     options => options.UseInMemoryDatabase("AppDb"));
-//
-// builder.Services.AddIdentityCore<MyUser>()
-//     .AddEntityFrameworkStores<AppDbContext>()
-//     .AddApiEndpoints();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 app.UseAuthentication();
-
-// app.MapIdentityApi<MyUser>();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
