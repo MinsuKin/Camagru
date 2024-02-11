@@ -1,7 +1,10 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using camagru.Models;
 using camagru.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,22 +21,30 @@ builder.Services.AddControllers()
                 .AddJsonOptions(
                     options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
+// For Identity in mongo
+builder.Services.AddAuthentication(x =>
+    {
+        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(x =>
+    {
+        x.RequireHttpsMetadata = false;
+        x.SaveToken = true;
+        x.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.ASCII.GetBytes(builder.Configuration.GetSection("JwtKey").ToString())),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+
+
 // for CRUD
 builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
-
-
-// for Identity
-builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
-    .AddIdentityCookies();
-builder.Services.AddAuthorizationBuilder();
-
-builder.Services.AddDbContext<AppDbContext>(
-    options => options.UseInMemoryDatabase("AppDb"));
-
-builder.Services.AddIdentityCore<MyUser>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddApiEndpoints();
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -41,7 +52,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.MapIdentityApi<MyUser>();
+app.UseAuthentication();
 
 app.UseDefaultFiles();
 // app.UseStaticFiles();
