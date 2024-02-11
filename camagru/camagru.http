@@ -1,6 +1,0 @@
-@camagru_HostAddress = http://localhost:8080
-
-GET {{camagru_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

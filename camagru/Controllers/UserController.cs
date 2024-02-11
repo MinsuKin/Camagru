@@ -1,9 +1,11 @@
 using camagru.Services;
 using camagru.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace camagru.Controllers;
+// namespace camagru.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class UserController: Controller
@@ -25,17 +27,28 @@ public class UserController: Controller
         var user = _userService.GetUser(id);
         
         if (user is null)
-        {
             return NotFound();
-        }
         
-        return user;
+        return Json(user);
     }
     
     [HttpPost]
     public ActionResult<User> CreateUser(User user)
     {
         _userService.CreateUser(user);
-        return user;
+        return Json(user);
+    }
+    
+    [AllowAnonymous]
+    [Route("authenticate")]
+    [HttpPost]
+    public ActionResult<string> Login([FromBody] User user)
+    {
+        var token = _userService.Authenticate(user.Id, user.Password);
+        
+        if (token is null)
+            return Unauthorized();
+
+        return Ok(new { token, user });
     }
 }
