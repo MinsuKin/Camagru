@@ -8,6 +8,8 @@ services:
     build:
       context: ./camagru
       dockerfile: dockerfile
+    expose:
+      - "5084"
     volumes:
       - ./camagru:/app
       - /app/bin
@@ -40,7 +42,6 @@ services:
       - 443:443
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./camagru/wwwroot:/usr/share/nginx/html
     depends_on:
       - server
     networks:
